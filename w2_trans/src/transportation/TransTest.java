@@ -25,6 +25,7 @@ public class TransTest {
             System.out.println("=====================");
             bus1.status();
             System.out.println("=====================");
+            bus1.changeSpeed();
         } else {
             System.out.println("최대 승객 수 초과");
         }

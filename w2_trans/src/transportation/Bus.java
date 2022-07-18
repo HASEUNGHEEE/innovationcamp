@@ -11,12 +11,13 @@ public class Bus extends TransTest{
     int lastPassengerCount;
     int oilAmount = 100;
     int status;
-    int velocity = 0;
+    int speed;
 
     public Bus() {
         serialNum++;
         busNumber = serialNum;
         status = 1;
+        speed = 20;
     }
     public void status() {
         Scanner sc = new Scanner(System.in);
@@ -49,6 +50,35 @@ public class Bus extends TransTest{
                 System.out.println("현재 주유량 = " + oilAmount);
                 System.out.println("상태 = 운행중");
                 status = 1;
+                break;
+            }
+        }
+    }
+    public void changeSpeed(){
+        Scanner sc = new Scanner(System.in);
+        int change;
+        String go;
+
+        System.out.println("현재 속도는 " + speed + "입니다. 원하는 속도를 고르세요. \n 1.빠르게 2.느리게");
+        go = sc.next();
+        while(true) {
+            if(go.equals("1")) {
+                System.out.println("원하는 속도를 입력하세요 : ");
+                change = sc.nextInt();
+                speed = speed + change ;
+                System.out.println("현재 속도는 " + speed +" 입니다");
+                break;
+            }else if (go.equals("2")) {
+                System.out.println("원하는 속도를 입력하세요 : ");
+                change = sc.nextInt();
+                speed = speed - change ;
+                if(speed == 0 || speed < 0) {
+                    System.out.println("운행을 종료합니다");
+                    System.out.println("=====================");
+                }else {
+                    System.out.println("현재 속도는 " + speed +" 입니다");
+                    System.out.println("=====================");
+                }
                 break;
             }
         }
