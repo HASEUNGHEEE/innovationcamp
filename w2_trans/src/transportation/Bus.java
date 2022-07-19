@@ -1,30 +1,19 @@
 package transportation;
 import java.util.Scanner;
-public class Bus extends TransTest{
-    static int serialNum = 10000;
-    int busNumber;
-    int intake1;
-    int intake2;
+public class Bus extends Trans{
     int max_passenger = 30;
-    int passengerCount1;
-    int passengerCount2;
     int lastPassengerCount;
-    int oilAmount = 100;
-    int status;
-    int speed;
+    int passengerCount2;
+    int intake2;
 
-    public Bus() {
-        serialNum++;
-        busNumber = serialNum;
-        status = 1;
-        speed = 20;
+    public Bus(int serialNum) {
+        super(serialNum);
     }
     public void status() {
         Scanner sc = new Scanner(System.in);
         System.out.print("사용한 기름을 입력하세요 : ");
         int used_oil = sc.nextInt();
         oilAmount = oilAmount - used_oil;
-
         while(true) {
             if (this.status == 1) {
                 System.out.println("현재 주유량 = " + oilAmount);
@@ -55,38 +44,12 @@ public class Bus extends TransTest{
         }
     }
     public void changeSpeed(){
-        Scanner sc = new Scanner(System.in);
-        int change;
-        String go;
-
-        System.out.println("현재 속도는 " + speed + "입니다. 원하는 속도를 고르세요. \n 1.빠르게 2.느리게");
-        go = sc.next();
-        while(true) {
-            if(go.equals("1")) {
-                System.out.println("원하는 속도를 입력하세요 : ");
-                change = sc.nextInt();
-                speed = speed + change ;
-                System.out.println("현재 속도는 " + speed +" 입니다");
-                break;
-            }else if (go.equals("2")) {
-                System.out.println("원하는 속도를 입력하세요 : ");
-                change = sc.nextInt();
-                speed = speed - change ;
-                if(speed == 0 || speed < 0) {
-                    System.out.println("운행을 종료합니다");
-                    System.out.println("=====================");
-                }else {
-                    System.out.println("현재 속도는 " + speed +" 입니다");
-                    System.out.println("=====================");
-                }
-                break;
-            }
-        }
+        super.changeSpeed();
     }
-    public void take1(int intake1) {
-        passengerCount1++;
-        lastPassengerCount = max_passenger - this.passengerCount1;
-        this.intake1 += intake1;
+    public void take(int intake){
+        super.take();
+        lastPassengerCount = max_passenger - this.passengerCount;
+        this.intake += intake;
     }
     public void take2(int intake2) {
         passengerCount2++;
@@ -94,14 +57,15 @@ public class Bus extends TransTest{
         this.intake2 += intake2;
     }
 
-    public void showInfo1() {
-        System.out.println("Bus "+ busNumber +"번의 탑승 승객 수 = "+ passengerCount1 +"명");
-        System.out.println("Bus "+ busNumber +"번의 잔여 숭객 수 = " + lastPassengerCount + "명");
-        System.out.println("Bus "+ busNumber +"번의 요금 = " + intake1 + "원");
+    public void showInfo() {
+        System.out.println(serialNum +"번의 탑승 승객 수 = "+ passengerCount +"명");
+        System.out.println(serialNum +"번의 잔여 숭객 수 = " + lastPassengerCount + "명");
+        System.out.println(serialNum +"번의 요금 = " + intake + "원");
     }
     public void showInfo2() {
-        System.out.println("Bus "+ busNumber +"번의 탑승 승객 수 = "+ passengerCount2 +"명");
-        System.out.println("Bus "+ busNumber +"번의 잔여 숭객 수 = " + lastPassengerCount + "명");
-        System.out.println("Bus "+ busNumber +"번의 요금 = " + intake2 + "원");
+        System.out.println(serialNum +"번의 탑승 승객 수 = "+ passengerCount2 +"명");
+        System.out.println(serialNum +"번의 잔여 숭객 수 = " + lastPassengerCount + "명");
+        System.out.println(serialNum +"번의 요금 = " + intake2 + "원");
     }
+
 }
