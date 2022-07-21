@@ -7,7 +7,6 @@ public class Taxi extends Trans{
     int distanceToDestination;
     int distanceToDestination2;
     int bsintake;
-    int intake = 1000;
     int intake2;
     int max_passenger = 4;
     int passengerCount1;
@@ -30,29 +29,32 @@ public class Taxi extends Trans{
     public void changeSpeed(){
         super.changeSpeed();
     }
-    public void take(int intake){
-        super.take();
+
+    @Override
+    public void take(int intake) {
+        passengerCount++;
         lastPassengerCount = max_passenger - this.passengerCount;
-        this.intake = intake*distanceToDestination - 1000 + bsintake;
+        this.intake = (intake * distanceToDestination) - 1000 + bsintake;
     }
+
     public void take2(int intake2){
         passengerCount2++;
         lastPassengerCount2 = max_passenger - this.passengerCount2;
-        this.intake2 = (1000 * distanceToDestination2) - 1000 + bsintake;
+        this.intake2 = (intake2 * distanceToDestination2) - 1000 + bsintake;
     }
 
     public void destination(){
         Scanner taxi1psg1 = new Scanner(System.in);
-        System.out.println("목적지를 입력하세요 : ");
+        System.out.print("목적지를 입력하세요 : ");
         destination = taxi1psg1.nextLine();
-        System.out.println("목적지까지의 거리를 입력하세요 : ");
+        System.out.print("목적지까지의 거리를 입력하세요 : ");
         distanceToDestination = taxi1psg1.nextInt();
     }
     public void destination2(){
         Scanner taxi1psg2 = new Scanner(System.in);
-        System.out.println("목적지를 입력하세요 : ");
+        System.out.print("목적지를 입력하세요 : ");
         destination = taxi1psg2.nextLine();
-        System.out.println("목적지까지의 거리를 입력하세요 : ");
+        System.out.print("목적지까지의 거리를 입력하세요 : ");
         distanceToDestination2 = taxi1psg2.nextInt();
     }
 

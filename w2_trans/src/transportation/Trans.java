@@ -1,24 +1,22 @@
 package transportation;
 import java.util.Scanner;
-public class Trans {
+public abstract class Trans {
     public int serialNum;
     public int passengerCount;
     public int lastPassengerCount;
     public int oilAmount;
     public int status;
     public int speed;
-    public int intake;
+    public int intake = 1000;
     public Trans(int serialNum) {
         this.serialNum = serialNum;
         this.oilAmount = 100;
         this.status = 1;
         this.speed = 0;
     }
-    public void status(){
-    }
-    public void take(){
-        passengerCount++;
-    }
+    public abstract void status();
+    public abstract void take(int intake);
+    public abstract void showInfo();
     public void changeSpeed(){
         Scanner sc = new Scanner(System.in);
         int change;
@@ -28,13 +26,13 @@ public class Trans {
         go = sc.next();
         while(true) {
             if(go.equals("1")) {
-                System.out.println("원하는 속도를 입력하세요 : ");
+                System.out.print("원하는 속도를 입력하세요 : ");
                 change = sc.nextInt();
                 speed = speed + change ;
                 System.out.println("현재 속도는 " + speed +" 입니다");
                 break;
             }else if (go.equals("2")) {
-                System.out.println("원하는 속도를 입력하세요 : ");
+                System.out.print("원하는 속도를 입력하세요 : ");
                 change = sc.nextInt();
                 speed = speed - change ;
                 if(speed == 0 || speed < 0) {
@@ -49,6 +47,5 @@ public class Trans {
         }
     }
 
-    public void showInfo() {
-    }
+
 }

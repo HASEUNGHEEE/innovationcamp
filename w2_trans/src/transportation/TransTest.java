@@ -16,7 +16,7 @@ public class TransTest {
         System.out.println(bus2.serialNum + "번");
         System.out.println("=====================");
 
-        System.out.println(bus1.serialNum + "번의 승객수를 입력하세요 : ");
+        System.out.print(bus1.serialNum + "번의 승객수를 입력하세요 : ");
         Scanner bus1psg = new Scanner(System.in);
         int bus1_psg_num = bus1psg.nextInt();
 
@@ -36,7 +36,7 @@ public class TransTest {
 
         while (true) {
             Scanner bus1psg2 = new Scanner(System.in);
-            System.out.println(bus1.serialNum + "번의 승객수를 입력하세요 : ");
+            System.out.print(bus1.serialNum + "번의 승객수를 입력하세요 : ");
             int bus1_psg_num2 = bus1psg2.nextInt();
 
             if (bus1_psg_num2 > 30) {
@@ -67,7 +67,7 @@ public class TransTest {
 
         int taxi1_psg_num;
         Scanner taxi1psg = new Scanner(System.in);
-        System.out.println(taxi1.serialNum + "번의 승객수를 입력하세요 : ");
+        System.out.print(taxi1.serialNum + "번의 승객수를 입력하세요 : ");
         taxi1_psg_num = taxi1psg.nextInt();
         taxi1.destination();
 
@@ -79,7 +79,7 @@ public class TransTest {
             taxi1.showInfo();
             taxi1.status();
             System.out.println("=====================");
-            System.out.println("지불할 요금은 = " + taxi1.intake + "원 입니다");
+            System.out.println("지불할 요금은 " + taxi1.intake + "원 입니다");
             System.out.println("=====================");
             System.out.println("주유량 = " + taxi1.oilAmount);
             System.out.println("누적 요금 = " + taxi1.intake);
@@ -90,7 +90,7 @@ public class TransTest {
 
         while (true) {
             Scanner taxi1psg2 = new Scanner(System.in);
-            System.out.println(taxi1.serialNum + "번의 승객수를 입력하세요 : ");
+            System.out.print(taxi1.serialNum + "번의 승객수를 입력하세요 : ");
             int taxi1_psg_num2 = taxi1psg2.nextInt();
             taxi1.destination2();
             if (taxi1_psg_num2 > 4) {
@@ -106,10 +106,10 @@ public class TransTest {
                 taxi1.status();
 
                 System.out.println("=====================");
-                System.out.println("지불할 요금은 = " + taxi1.intake2 + "원 입니다");
+                System.out.println("지불할 요금은 " + taxi1.intake2 + "원 입니다");
                 System.out.println("=====================");
                 System.out.println("주유량 = " + taxi1.oilAmount);
-                System.out.println("누적 요금 = " + (taxi1.intake + taxi1.intake2));
+                System.out.println("누적 요금 = " + (taxi1.intake + taxi1.intake2) + "원");
                 if (taxi1.oilAmount <= 10) {
                     System.out.println("상태 = 운행불가");
                     System.out.println("주유 필요");

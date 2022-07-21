@@ -9,6 +9,7 @@ public class Bus extends Trans{
     public Bus(int serialNum) {
         super(serialNum);
     }
+
     public void status() {
         Scanner sc = new Scanner(System.in);
         System.out.print("사용한 기름을 입력하세요 : ");
@@ -46,16 +47,19 @@ public class Bus extends Trans{
     public void changeSpeed(){
         super.changeSpeed();
     }
-    public void take(int intake){
-        super.take();
+    @Override
+    public void take(int intake) {
+        passengerCount++;
         lastPassengerCount = max_passenger - this.passengerCount;
         this.intake += intake;
     }
+
     public void take2(int intake2) {
         passengerCount2++;
         lastPassengerCount = max_passenger - this.passengerCount2;
         this.intake2 += intake2;
     }
+
 
     public void showInfo() {
         System.out.println(serialNum +"번의 탑승 승객 수 = "+ passengerCount +"명");
