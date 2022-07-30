@@ -68,28 +68,28 @@ public class PostController {
         return "basic/detailPost";
     }
 
-    @GetMapping("/api/post/{id}/edit")
+    //게시글 수정 페이지
+    @GetMapping("/{id}/edit")
     public String getEditPost(@PathVariable Long id, Model model) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
-
         model.addAttribute("post", post);
-        return "redirect:/editPost";
+        return "basic/editPost";
     }
 
 
-    @PutMapping("/api/post/{id}/edit")
+    @PostMapping("/{id}/edit")
     public String updatePost(@PathVariable Long id, @ModelAttribute PostRequestDto requestDto) {
         postService.update(id, requestDto);
-        return "redirect:/";
+        return "redirect:/basic/posts";
 
     }
 
-    @DeleteMapping("/api/post/{id}")
+    @DeleteMapping("/{id}")
     public String deletePost(@PathVariable Long id) {
-        postRepository.deleteById(id);
-        return "redirect:/posts";
+        postService.delete(id);
+        return "redirect:/basic/posts";
     }
 }
 

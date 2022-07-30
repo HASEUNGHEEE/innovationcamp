@@ -45,6 +45,20 @@
         }
     </style>
     <script>
+        // function postDelete(id) {
+        //     $.ajax({
+        //         type: 'DELETE',
+        //         url: '/basic/posts/${id}',
+        //         contentType: "application/json",
+        //         data: JSON.stringify(data),
+        //         success: function (response) {
+        //             if (response === true) {
+        //                 alert('포스트가 삭제되었습니다.');
+        //                 window.location.href = '/basic/posts';
+        //             }
+        //         }
+        //     })
+        // }
 
     </script>
 </head>
@@ -65,13 +79,13 @@
 
         <div class="form-floating mb-3">
             <div>
-                <label for="postId">포스트 NO.</label>
-                <input type="text" id="postId" name="postId" class="form-control" th:value="${post.id}" readonly>
+                <label for="author">작성자</label>
+                <input type="text" id="author" name="author" class="form-control" th:value="${post.author}" readonly>
             </div>
             <p>
             <div>
-                <label for="author">작성자</label>
-                <input type="text" id="author" name="author" class="form-control" th:value="${post.author}" readonly>
+                <label for="time">작성날짜</label>
+                <input type="text" id="time" name="time" class="form-control" th:value="${#temporals.format(post.modifiedAt)}">
             </div>
             <p>
             <div>
@@ -87,13 +101,14 @@
             <div class="row">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-secondary"
-                            onclick="location.href='editPost.html'" th:onclick="|location.href='@{/posts/{postId}/edit(postId=${post.id})}'|">수정하기</button>
-
-                    <button type="button" class="btn btn-outline-secondary"
-                            onclick="location.href='editPost.html'" th:onclick="|location.href='@{/posts/{postId}/delete-login(postId=${post.id})}'|">삭제하기</button>
+                            onclick="location.href='editPost.html'"
+                            th:onclick="|location.href='@{/basic/posts/{id}/edit(id=${post.id})}'|">수정하기</button>
+                    <button type="button" id="btn-delete" class="btn btn-outline-secondary"
+                            onclick="location.href='posts.html'"
+                            th:onclick="|location.href='@{/basic/posts/{id}(id=${post.id})}'|">삭제하기</button>
                     <button type="button" class="btn btn-secondary"
                             onclick="location.href='posts.html'"
-                            th:onclick="|location.href='@{/posts}'|">목록으로</button>
+                            th:onclick="|location.href='@{/basic/posts}'|">목록으로</button>
                 </div>
             </div>
         </div>
