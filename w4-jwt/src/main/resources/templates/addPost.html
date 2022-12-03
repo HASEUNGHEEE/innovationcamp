@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .mypost {
+            width: 95%;
+            max-width: 600px;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+        }
+        body {
+            padding-top: 150px;
+        }
+        /*스크롤바*/
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            height: 30%;
+            background: hsl(227, 92%, 5%);
+
+            border-radius: 10px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<!---------------------- navbar ---------------------->
+<nav class="navbar is-fixed-top is-white" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand" style="height: 100px">
+        <a href="/basic/posts">
+            <img style="width: 40px; height: 40px; margin-left: 20px"
+                 src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"/>
+        </a>
+    </div>
+</nav>
+<!---------------------- 입력폼 ---------------------->
+<div class="mypost">
+    <div class="form-floating mb-3">
+
+        <form action="detailPost.html" th:action th:object="${post}" method="post">
+            <div>
+                <label for="title">제목</label>
+                <input type="text" id="title" th:field="*{title}" class="form-control" required="required" placeholder="제목을 입력하세요">
+            </div>
+            <p>
+            <div>
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" th:field="*{content}" th:text="*{content}" required="required" maxlength="150" placeholder="내용을 입력하세요" type="text"></textarea>
+            </div>
+            <!-------------날짜는 클래스 따로 생성------------------>
+
+            <hr class="my-4">
+            <div class="row">
+                <div class="col">
+                    <button class="w-100 btn btn-secondary btn-lg" type="submit">포스팅하기</button>
+                </div>
+                <div class="col">
+                    <button class="w-100 btn btn-outline-secondary btn-lg"
+                            onclick="location.href='index.html'"
+                            th:onclick="|location.href='@{/post}'|"
+                            type="button">취소</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div> <!-- /container -->
+</body>
+</html>
