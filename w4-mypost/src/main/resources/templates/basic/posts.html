@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        a {
+            text-decoration: none;
+        }
+        body {
+            padding-top: 30px;
+        }
+        /*스크롤바*/
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            height: 30%;
+            background: hsl(227, 92%, 5%);
+
+            border-radius: 10px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<!---------------------- navbar ---------------------->
+<nav class="navbar is-fixed-top is-white" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a href="/posts">
+            <img style="width: 40px; height: 40px; margin-left: 20px"
+                 src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png"/>
+        </a>
+    </div>
+</nav>
+<!---------------------- 기록 리스트 ---------------------->
+<div class="container" style="max-width: 900px">
+    <div class="py-5 text-center">
+
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-secondary float-end"
+                    onclick="location.href='addPost.html'"
+                    th:onclick="|location.href='@{/basic/posts/add}'|"
+                    type="button" style="font-family: 'Noto Sans KR', sans-serif; font-weight: 500">기록하기</button>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>NO.</th>
+                <th>TITLE</th>
+                <th>NAME</th>
+                <th>DATE</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${post}">
+                <td th:text="${post.id}">NO.</a></td>
+                <td><a href="detailPost.html" th:href="@{/basic/posts/{id}(id=${post.id})}" th:text="${post.title}">TITLE</a></td>
+                <!--                {|/basic/items/${item.id}|}-->
+                <td th:text="${post.author}">NAME</td>
+                <!--/*@thymesVar id="modifiedAt" type=""*/-->
+                <td th:text="${#temporals.format(post.modifiedAt)}">DATE</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>
